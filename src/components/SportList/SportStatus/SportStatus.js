@@ -1,31 +1,31 @@
 import React from 'react'
 
 import MedalChart from '../../MedalChart/MedalChart';
-import Medalist from '../../Medalist/Medalist';
+import MedalList from '../../MedalList/MedalList';
 
 const medalListFN = (medalist, idx) => {
     return (
-        <Medalist
+        <MedalList
             key={idx}
-            name={medalist.name}
-            gender={medalist.gender}
-            event={medalist.event}/>
+            name={medalist.Participant.c_Participant}
+            gender={medalist.Gender.c_Name}
+            event={medalist.Event.c_Name}/>
     )
 }
 const sportStatus = (props) => {
-    const goldMedalList = props.medalList.goldMedalList.map(medalListFN)
-    const silverMedalList = props.medalList.silverMedalList.map(medalListFN)
-    const bronzeMedalList = props.medalList.bronzeMedalList.map(medalListFN)
+    const goldMedalList = props.status.GoldMedalList.map(medalListFN)
+    const silverMedalList = props.status.SilverMedalList.map(medalListFN)
+    const bronzeMedalList = props.status.BronzeMedalList.map(medalListFN)
 
     
     return (
         <div className="xs-6 top-buffer">
-            <h5>{props.name} ({props.short})</h5>
+            <h5>{props.status.Sport.c_Name} ({props.status.Sport.c_Short})</h5>
             <MedalChart
                 max={props.max}
                 height={props.height}
                 width={props.height}
-                medals={props.medals} />
+                medals={props.status.Medals} />
             <p>Golden MedalList</p>
             <ul className="list-group">
                 {goldMedalList}

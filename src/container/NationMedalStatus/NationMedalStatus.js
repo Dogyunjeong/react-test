@@ -14,49 +14,15 @@ class MedalStatus extends Component {
         }
     }
 
-    getMedal(medalObj) {
-        return {
-            total: medalObj.n_Total,
-            gold: medalObj.n_Gold,
-            silver: medalObj.n_Silver,
-            bronze: medalObj.n_Bronze
-        }
-    }
-
     getMax(arr) {
         return Math.max(...arr)
     }
     // TrimData for component
-    getMedalList(list) {
-        return list.map((obj) => {
-            return {
-                name: obj.Participant.c_Participant,
-                event: obj.Event.c_Name,
-                gender: obj.Gender.c_Short
-            }
-        })
-    }
     // TrimData for component
 
-    getSport() {
-        const ctx = this;
+    getSportListMax() {
         const totals = this.state.SportList.map(obj => obj.Medals.n_Total)
-        const max = this.getMax(totals);
-
-        return this.state.SportList.map((obj) => {
-            return {
-                name: obj.Sport.c_Name,
-                short: obj.Sport.c_Short,
-                rank: obj.Medals.n_RankTotal,
-                medals: ctx.getMedal(obj.Medals),
-                max,
-                medalList: {
-                    goldMedalList: ctx.getMedalList(obj.GoldMedalList),
-                    silverMedalList: ctx.getMedalList(obj.SilverMedalList),
-                    bronzeMedalList: ctx.getMedalList(obj.BronzeMedalList),
-                },
-            }
-        })
+        return this.getMax(totals);
     }
 
     render () {
@@ -75,14 +41,15 @@ class MedalStatus extends Component {
                             max={this.getMax([this.state.NOCMedals.Medals.n_Total])}
                             height={400}
                             width={400}
-                            medals={this.getMedal(this.state.NOCMedals.Medals)}/>
+                            medals={this.state.NOCMedals.Medals}/>
                     </div>
                 </div>
                 <div className="top-buffer">
                     <h3>Sport List</h3>
                 </div>
                 <SportList
-                    sport={this.getSport()}/>
+                    max={this.getSportListMax()}
+                    sportList={this.state.SportList}/>
             </div>
         )
     }

@@ -6,7 +6,7 @@ Since lack of time, I decide to leave as one page.
 `bootstrap`, `enzyme` and enzyme related dependencies.
 
 # Spending Time
-Around 2 hrs. Except creating Readme, preparing environment and processing of git.
+Some over 2 hrs. Except creating Readme, preparing environment and processing of git.
 
 ### Before start assignment
 I checked assignment previously.
